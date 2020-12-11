@@ -18,7 +18,7 @@ public class RomanNumeral {
         map.put('M', 1000);
     }
 
-    public int convert(String s) {
+    public int convert_original(String s) {
 
         int convertedNumber = 0;
         for(int i = 0; i < s.length(); i++) {
@@ -33,5 +33,18 @@ public class RomanNumeral {
 
         return convertedNumber;
 
+    }
+
+    public  int convert(String s) {
+        int value = 0;
+        for (int i=0; i<s.length(); ++i) {
+            int cur = map.get(s.charAt(i));
+            if (i < s.length() - 1 && map.get(s.charAt(i + 1)) > cur) {
+                value -= cur;
+            }else{
+                value += cur;
+            }
+        }
+        return value;
     }
 }
